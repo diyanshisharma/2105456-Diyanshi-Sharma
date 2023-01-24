@@ -1,0 +1,166 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2105437 Amaan Bhati Assignment-1</title>
+    <style>
+        body{
+            background-color: #99FF99;
+        }
+        h1{
+            font-size: 60px;
+        }
+        .row-container{
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+        }
+        .column-container{
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+        .custom-button{
+            background-color: white;
+            border: #CCCCCC 2px solid;
+            height: 70px;
+            margin-top: 50px;
+            border-radius: 8px;
+            width: 275px;
+    height: 67px;
+    font-weight: 600;
+    border-radius: 1.6rem;
+    font-size: 20px;
+    /* width: 414px; */
+        }
+        .custom-button:hover{
+            border: green 2px solid;
+            height: 75px;
+            
+        }
+        .custom-button-current{
+            background-color: green;
+            color: white;
+
+        }
+        .base-form-container{
+            width: 183px;
+    height: 238px;
+           
+            padding: 16px;
+            background-color: #BBFFBC;
+            padding: 91px;
+        }
+        .hidden{
+            display: none;
+        }
+        .bottom-buttons{
+            position: relative;
+            float: right;
+            height: 30px;
+            width: 75px;
+            margin-left: 20px;
+        }
+    </style>
+    <script src="index.js"> </script>
+</head>
+<body>
+    
+    <h1>Sample Form</h1>
+    <div class="row-container">
+        <div class="column-container">
+            <button class="custom-button custom-button-current" onclick="onButtonSelected(0)">Button 1</button>
+            <button class="custom-button" onclick="onButtonSelected(1)">Button 2</button>
+            <button class="custom-button" onclick="onButtonSelected(2)">Button 3</button>
+        </div>
+        <div class="column-container" style="width: 100%;">
+
+        <form action="user-input.html" method="get" target="_blank">
+            <div class="column-container base-form-container" id="container-0">
+                    <label for="fname">First name:</label><br>
+                    <input placeholder="enter your first name" type="text" id="fname" name="fname"><br>
+                    <label for="lname">Last name:</label><br>
+                    <input type="text" id="lname" name="lname" placeholder="enter your last name"><br><br>
+                   
+            </div>
+            <div class="column-container base-form-container" style="display: none;" id="container-1">
+                
+                <br>
+            fav-language: <br/><br/><select name="fav-language" id="fav-language">
+                    <option selected>select a programming language</option>
+                    <option>HTML</option>
+                    <option>CSS</option>
+                    <option>JAVASCRIPT</option>
+                    <option>JAVA</option>
+                </select><br><br>
+            </div>
+
+
+
+            <div class="column-container base-form-container" id="container-2" style="display: none;">
+                <label for="inputStreet">Street: </label> <br/>
+                <input type="street" 
+                    class="form-control" 
+                    id="inputStreet" name="street"
+                    placeholder="Street">
+                <br/><br/>
+
+                <label for="inputCity">City: </label> <br/>
+                <input type="city" 
+                        class="form-control" 
+                        name="city"
+                        id="inputCity" 
+                        placeholder="City">
+                        <br/><br/>
+
+
+
+
+
+                <label for="inputZip">ZIP: </label> <br/>
+                <input type="zip" 
+                        class="form-control" 
+                        id="inputZip" 
+                        name="zip"
+                        placeholder="Zip">
+            </div>
+        
+            <div class="row-container">
+                <button class="bottom-buttons" type="button" onclick="onNextClicked()">Next</button>
+                <input type="submit" class="bottom-buttons"> </input>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        let formIndex = 0;
+
+const makeVisibleIndex = (index) => {
+    let buttons = document.getElementsByClassName("custom-button");
+    for (let i = 0; i < buttons.length; i++){
+        buttons[i].classList = ["custom-button"];
+    }
+    buttons[index].classList = ['custom-button custom-button-current'];
+    for (let i = 0; i < 3; i++){
+        let doc = document.getElementById("container-".concat(i.toString()));
+        doc.style = "display: none;"
+    }
+    let doc = document.getElementById("container-".concat(index.toString()));
+    doc.style = ""
+}
+const onNextClicked = () => {
+    formIndex = (formIndex + 1) % 3;
+    makeVisibleIndex(formIndex);
+}
+
+const onButtonSelected = (index) => {
+    if (index == formIndex)
+        return;
+    formIndex = (index)
+    console.log(index)
+    makeVisibleIndex(formIndex);
+}
+    </script>
+
+</body>
+</html>

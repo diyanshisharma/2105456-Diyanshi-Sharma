@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result of form</title>
+    <style>
+        body{
+            background-color: #99FF99;
+        }
+        .data-container{
+            height: 50%;
+            width: 50%;
+            background-color: #BBFFBC;
+            padding: 24px;
+            font-size: large;
+            margin: auto;
+        }
+        .data-value{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Data</h1>
+    <div class="data-container">
+        <b>Name: </b> <div id="name" class="data-value"></div> <br/>
+        <b>Prog language: </b> <div id="fav-language" class="data-value"></div><br/>
+        <b>Street: </b> <div id="street" class="data-value"></div><br/>
+        <b>City: </b> <div id="city" class="data-value"></div><br/>
+        <b>Zip: </b> <div id="zip" class="data-value"></div><br/>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        let paramObj = {};
+        for(var value of params.keys()) {
+            if (value == 'fname' || value == 'lname'){
+                continue;
+            }
+            let val = params.get(value);
+            document.getElementById(value).innerHTML = val;
+        }
+        document.getElementById('name').innerHTML = params.get('fname') + ' ' + params.get('lname');
+    </script>
+</body>
+</html>
